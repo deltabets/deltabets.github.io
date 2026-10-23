@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeltaBets · Avisos de arbitraje en tus casas</title>
+<meta name="description" content="Avisos de surebets y middles leídos directamente en las casas de apuestas españolas: la casa, la cuota y cuánto apostar en cada pata, por Telegram.">
+<meta name="theme-color" content="#05070a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DeltaBets · Arbitrajes en tus casas, por Telegram">
+<meta property="og:description" content="Leemos las cuotas de 13 casas españolas y te avisamos cuando dos cuotas cubren todos los resultados.">
+<meta property="og:image" content="logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.jpg">
+<style>:root{
+  --bg:#05070a; --bg2:#0a0f14; --surface:#0f151b; --text:#eef4f2; --muted:#93a4a1;
+  --accent:#25e08a; --accent-text:#04140c; --border:#1d272e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 420px at 50% -120px,#0f2a20 0%,var(--bg) 60%);
+  color:var(--text);line-height:1.62;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+a{color:var(--accent);text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+.marca img{width:42px;height:42px;border-radius:50%;border:1px solid var(--border)}
+.btn{display:inline-block;background:linear-gradient(180deg,#31f09b,#12b573);color:var(--accent-text);
+  padding:13px 24px;border-radius:12px;font-weight:800;text-decoration:none;
+  box-shadow:0 8px 26px rgba(37,224,138,.22)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border);box-shadow:none}
+.btn.small{padding:9px 16px;font-size:.92rem}
+.hero{text-align:center;padding:46px 0 10px}
+.hero .insignia{width:150px;height:150px;border-radius:50%;border:2px solid var(--accent);
+  box-shadow:0 0 60px rgba(37,224,138,.25);margin-bottom:22px}
+.hero h1{font-size:clamp(2rem,5.2vw,3.15rem);line-height:1.12;margin:0 0 16px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);max-width:620px;margin:0 auto 26px;font-size:1.08rem}
+.fino{font-size:.85rem;color:var(--muted);margin-top:12px}
+section{padding:44px 0}
+h2{text-align:center;font-size:1.65rem;margin:0 0 10px;letter-spacing:-.2px}
+.sub{text-align:center;color:var(--muted);margin:0 auto 28px;max-width:620px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--border);
+  border-radius:16px;padding:22px;display:flex;flex-direction:column}
+.card h3{margin:0 0 8px;font-size:1.05rem}
+.card p{margin:0;color:var(--muted)}
+.card ul{padding-left:18px;margin:0 0 18px;color:var(--muted);font-size:.94rem}
+.card .btn{margin-top:auto;text-align:center}
+.card.featured{border-color:var(--accent);box-shadow:0 0 0 1px rgba(37,224,138,.25),0 16px 40px rgba(0,0,0,.35)}
+.tag{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;
+  padding:2px 10px;margin-bottom:10px;width:max-content}
+.num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--accent);
+  color:var(--accent-text);align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
+.price{font-size:2rem;font-weight:800;margin:6px 0 12px;letter-spacing:-.5px}
+.price small{font-size:.9rem;color:var(--muted);font-weight:500}
+.metricas{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.metrica{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center}
+.metrica b{display:block;font-size:1.7rem;color:var(--accent);letter-spacing:-.5px}
+.metrica span{color:var(--muted);font-size:.85rem}
+.aviso{display:grid;gap:22px;grid-template-columns:1.05fr .95fr;align-items:center}
+.aviso pre{background:#0b1116;border:1px solid var(--border);border-radius:16px;padding:18px;
+  font-size:.82rem;line-height:1.5;white-space:pre-wrap;margin:0;color:#dfe9e6;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.aviso h2{text-align:left;margin-bottom:12px}
+.aviso p{color:var(--muted);margin:0 0 14px}
+.aviso ul{color:var(--muted);margin:0;padding-left:18px}
+.faq{max-width:760px;margin:0 auto}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:14px 18px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{color:var(--muted);margin:10px 0 0}
+.cta{text-align:center;padding-bottom:56px}
+footer{padding:30px 0 44px;color:var(--muted);font-size:.83rem;text-align:center;
+  border-top:1px solid var(--border)}
+@media (max-width:760px){.aviso{grid-template-columns:1fr}.aviso h2{text-align:center}
+  .hero .insignia{width:118px;height:118px}}
+@media (max-width:430px){.hero h1{font-size:1.72rem}.hero{padding-top:26px}
+  h2{font-size:1.4rem}.wrap{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="marca"><img src="logo.jpg" alt="DeltaBets"><span>DeltaBets</span></div>
+    <a class="btn small" href="https://t.me/DeltaBets_bot">Abrir en Telegram</a>
+  </header>
+
+  <div class="hero">
+    <img class="insignia" src="logo.jpg" alt="Logo de DeltaBets">
+    <h1>Arbitrajes en las casas<br>donde <em>ya tienes cuenta</em></h1>
+    <p>Leemos las cuotas <b>directamente en 13 casas españolas</b> —sin agregadores que
+    llegan tarde— y te avisamos por Telegram cuando dos cuotas cubren todos los resultados.
+    Cada aviso dice la casa, la cuota y cuánto apostar en cada pata.</p>
+    <a class="btn" href="https://t.me/DeltaBets_bot">Probar 2 días gratis</a>
+    <div class="fino">Sin tarjeta. Sin permanencia. Se acaba solo.</div>
+  </div>
+
+  <section>
+    <div class="metricas">
+      <div class="metrica"><b>112</b><span>avisos en los últimos 30 días</span></div>
+      <div class="metrica"><b>13</b><span>casas leídas de forma directa</span></div>
+      <div class="metrica"><b>33</b><span>mercados vigilados</span></div>
+      <div class="metrica"><b>48%</b><span>seguían vivos a los 5 min</span></div>
+    </div>
+    <p class="sub" style="margin-top:16px;margin-bottom:0">Datos calculados sobre los avisos
+    reales del servicio (últimos 30 días). Mejor ROI avisado: <b>24.4%</b>.</p>
+  </section>
+
+  <section id="ejemplo">
+    <div class="aviso">
+      <div>
+        <h2>Así es el aviso que recibes</h2>
+        <p>Sin capturas de fantasía: este es un aviso real enviado por el bot. Te dice el partido,
+        el mercado exacto con su línea, la casa, la cuota y <b>cuántos euros van a cada pata</b>
+        para que cobres lo mismo pase lo que pase.</p>
+        <ul>
+          <li>La línea de cada pata, sin ambigüedad</li>
+          <li>El reparto calculado sobre tu bankroll</li>
+          <li>Botón directo a cada casa para comprobar la cuota</li>
+          <li>Si la cuota se cae, te llega el aviso de caída</li>
+        </ul>
+      </div>
+      <pre>SUREBET DETECTADA
+ Profit: +6.32%
+
+ Baloncesto
+ Estados Unidos
+ 24/10 04:00
+
+Sacramento Kings - Portland Trail Blazers
+ Mercado: Más/Menos puntos · 1er cuarto · líneas 55.5 / 57.5
+
+ JokerBet · Más de 55.5 cuarto · @1.85 (57.5%)
+ Bwin · Menos de 57.5 cuarto · @2.5 (42.5%)
+
+ Apuestas (1.000,00 €): JokerBet 574,72 € · Bwin 425,29 €
+ Beneficio garantizado: 63,22 € (ROI real 6.32%)
+
+ Válido ~5 min: comprueba la cuota en la casa antes de apostar</pre>
+    </div>
+  </section>
+  <section id="como-funciona">
+    <h2>Cómo funciona</h2>
+    <p class="sub">Tres pasos. Tú solo das el último.</p>
+    <div class="grid">
+      <div class="card"><div class="num">1</div><h3>Leemos las casas</h3><p>Cada 3 minutos
+      entramos en los mercados de 13 casas (fútbol, baloncesto y tenis) con lectores propios:
+      sabemos qué precio hay de verdad, no lo que publica un tercero.</p></div>
+      <div class="card"><div class="num">2</div><h3>Calculamos el reparto</h3><p>Cuando dos cuotas
+      cubren todos los resultados, calculamos cuánto va a cada pata para que cobres lo mismo pase
+      lo que pase. También buscamos middles cubiertos.</p></div>
+      <div class="card"><div class="num">3</div><h3>Te avisamos</h3><p>Recibes el aviso con el
+      partido, el mercado, la casa, la cuota y los euros de cada apuesta. Y si la cuota se cae,
+      te llega el aviso de caída.</p></div>
+    </div>
+  </section>
+
+  <section id="incluye">
+    <h2>Qué incluye</h2>
+    <p class="sub">Lo necesario para ejecutar el arbitraje sin hacer cuentas.</p>
+    <div class="grid">
+      <div class="card"><h3>👑 Surebets</h3><p>Avisos con el ROI real, no el teórico: el reparto
+      se calcula con la cuota neta de cada casa y su comisión.</p></div>
+      <div class="card"><h3>⚖️ Middlebets cubiertos</h3><p>Dos líneas del mismo mercado: si el
+      resultado cae entre ellas cobras las dos; si cae fuera, recuperas lo apostado.</p></div>
+      <div class="card"><h3>🔔 Aviso de caída</h3><p>Cuando la cuota que te avisé ya no está, te lo
+      digo con el mismo formato. No te enteras tú solo al abrir la casa.</p></div>
+      <div class="card"><h3>⚙️ A tu medida</h3><p>ROI mínimo, bankroll, silencio nocturno, solo
+      competiciones importantes y solo los deportes que quieras.</p></div>
+      <div class="card"><h3>📈 Tu rendimiento</h3><p>Cuántos avisos has recibido y cuántos seguían
+      vivos a los 5 minutos. Tus datos, no promesas.</p></div>
+      <div class="card"><h3>🌐 Un botón por casa</h3><p>Cada aviso lleva el enlace directo a la web
+      de cada casa para comprobar la cuota sin buscar nada.</p></div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <h2>Precios</h2>
+    <p class="sub">Sin suscripción automática: pagas un periodo y decides si sigues.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Prueba</h3>
+        <div class="price">0 €<small> · 2 días</small></div>
+        <ul>
+          <li>Todos los avisos, sin recortes</li>
+          <li>Sin tarjeta ni compromiso</li>
+          <li>Se acaba solo: no se cobra nada</li>
+        </ul>
+        <a class="btn ghost" href="https://t.me/DeltaBets_bot">Empezar</a>
+      </div>
+      <div class="card">
+        
+        <h3>15 días</h3>
+        <div class="price">10,00 €<small> · 0,67 € / día</small></div>
+        <ul>
+          <li>Avisos de surebets y middles en Telegram</li>
+          <li>La casa, la cuota y cuánto apostar en cada pata</li>
+          <li>Aviso si la cuota se cae</li>
+          <li>Filtros de ROI, bankroll, horario y ligas</li>
+          <li>Tu historial y tu rendimiento</li>
+        </ul>
+        <a class="btn" href="https://buy.stripe.com/8x2eV6aq10SA5Cl99PaMU02">Suscribirme</a>
+      </div>
+      <div class="card featured">
+        <div class="tag">El más elegido</div>
+        <h3>30 días</h3>
+        <div class="price">15,00 €<small> · 0,50 € / día</small></div>
+        <ul>
+          <li>Avisos de surebets y middles en Telegram</li>
+          <li>La casa, la cuota y cuánto apostar en cada pata</li>
+          <li>Aviso si la cuota se cae</li>
+          <li>Filtros de ROI, bankroll, horario y ligas</li>
+          <li>Tu historial y tu rendimiento</li>
+        </ul>
+        <a class="btn" href="https://buy.stripe.com/3cI7sEfKlbxec0Jdq5aMU03">Suscribirme</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">Lo que más se pregunta antes de empezar.</p>
+    <div class="faq">
+      <details><summary>¿Necesito cuentas en las casas?</summary>
+        <p>Sí. Tú abres y verificas tus cuentas; el bot solo te dice dónde está la cuota y cuánto
+        poner en cada pata. No entra en tu cuenta ni apuesta por ti.</p></details>
+      <details><summary>¿Cuánto dinero necesito para empezar?</summary>
+        <p>El aviso se calcula sobre el bankroll que configures (desde 100 €). Con bankrolls bajos
+        algunas patas pueden quedar por debajo del mínimo de la casa, y el aviso te lo advierte.</p></details>
+      <details><summary>¿Y si la cuota cambia antes de que apueste?</summary>
+        <p>Pasa: una surebet vive minutos. Por eso el aviso lleva la hora de lectura y, si se cae,
+        recibes el aviso de caída para que no la hagas. La tasa de cuotas vivas a 5 minutos está
+        publicada arriba, con datos reales.</p></details>
+      <details><summary>¿Puedo cancelar?</summary>
+        <p>No hay suscripción automática: el acceso caduca el día que termina el periodo y no se
+        renueva solo. No tienes que cancelar nada.</p></details>
+      <details><summary>¿Cómo se paga?</summary>
+        <p>Con tarjeta a través de Stripe. El acceso se activa solo al confirmarse el pago; si
+        tarda, hay un botón de «ya he pagado» como red de seguridad.</p></details>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>¿Lo pruebas?</h2>
+    <p class="sub">2 días gratis, sin tarjeta. Si no te sirve, no pagas nada.</p>
+    <a class="btn" href="https://t.me/DeltaBets_bot">Abrir DeltaBets en Telegram</a>
+  </section>
+
+  <footer>
+    <b>+18</b> · Las apuestas conllevan riesgo y pueden crear adicción. Juega con responsabilidad:
+    <a href="https://www.jugarbien.es">jugarbien.es</a>.<br>
+    El arbitraje reduce el riesgo pero no lo elimina: las cuotas cambian en minutos y las casas
+    pueden limitar o rechazar importes. Esta página no promete beneficios; los datos que se
+    muestran se calculan sobre los avisos reales del servicio.
+  </footer>
+</div>
+</body>
+</html>
